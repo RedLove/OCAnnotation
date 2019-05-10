@@ -14,10 +14,17 @@
 
 @implementation OCAViewController
 
+#pragma annotation(type:"remoteLog",remoteLogId:"OCAViewController->viewDidLoad")
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self presentViewController:[OCAViewController new] animated:YES completion:^{
+            NSLog(@"created");
+        }];
+    });
 }
 
 - (void)didReceiveMemoryWarning
